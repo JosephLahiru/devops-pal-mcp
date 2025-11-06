@@ -5,7 +5,8 @@
 1. `cd backend`
 2. `python3 -m venv devops_pal`
 3. `devops_pal\Scripts\activate`
-4. `python server.py`
+4. `pip install -r requirements.txt`
+5. `python server.py`
 
 ### Get another terminal (ctrl+shift+~)
 
