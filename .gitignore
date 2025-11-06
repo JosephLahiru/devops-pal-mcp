@@ -1,0 +1,6 @@
+**_pycache__
+.env
+**/node_modules
+frontend/package-lock.json
+backend/data/*.json
+backend/devops_pal
