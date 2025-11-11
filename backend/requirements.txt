@@ -1,6 +1,5 @@
 mcp[cli]==1.6.0
 python-dotenv==1.0.1
-ipykernel==6.29.5
 httpx==0.28.1
 Flask[async]==3.0.3
 flask-cors==5.0.1
