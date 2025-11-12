@@ -1,0 +1,76 @@
+version: "3.9"
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    volumes:
+      - ollama:/root/.ollama
+    ports:
+      - "11434:11434"
+    networks:
+      - app-network
+
+  backend-server:
+    build:
+      context: ../../backend
+      dockerfile: Dockerfile.server
+    container_name: backend-server
+    working_dir: /app
+    volumes:
+      - ../../backend:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: ["python", "server.py"]
+    ports:
+      - "5005:5005"
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - app-network
+
+  backend-client:
+    build:
+      context: ../../backend
+      dockerfile: Dockerfile.client
+    container_name: backend-client
+    working_dir: /app
+    volumes:
+      - ../../backend:/app
+    ports:
+      - "5000:5000"
+    command: ["python", "client_api_ollama.py"]
+    environment:
+      - PYTHONUNBUFFERED=1
+      - SERVER_HOST=backend-server
+      - SERVER_PORT=5005
+    depends_on:
+      - backend-server
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ../../frontend
+      dockerfile: Dockerfile.frontend
+    container_name: frontend
+    working_dir: /app
+    volumes:
+      - ../../frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - backend-server
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+
+volumes:
+  ollama:
+    external: true # keep is true only if you alredy have a ollama instance running.
