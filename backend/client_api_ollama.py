@@ -49,9 +49,9 @@ def get_or_create_user():
 # =====================================================
 # Ollama + MCP Configuration
 
-OLLAMA_BASE = os.getenv("OLLAMA_BASE", "http://127.0.0.1:11434/")
+OLLAMA_BASE = os.getenv("OLLAMA_BASE", "http://ollama:11434/")
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.2:latest")
-MCP_SSE_URL = os.getenv("MCP_SSE_URL", "http://localhost:5005/sse")
+MCP_SSE_URL = os.getenv("MCP_SSE_URL", "http://backend-server:5005/sse")
 
 ollama_client = Client(host=OLLAMA_BASE)
 
