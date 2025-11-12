@@ -7,7 +7,7 @@ services:
     ports:
       - "11434:11434"
     volumes:
-      - ollama_data:/root/.ollama
+      - ollama:/root/.ollama
     deploy:
       resources:
         reservations:
@@ -34,5 +34,6 @@ services:
     restart: unless-stopped
 
 volumes:
-  ollama_data:
+  ollama:
+    external: true # keep is true only if you alredy have a ollama instance running.
   openwebui_data:
