@@ -2,7 +2,6 @@
 
 ## Locally Running LLMs Using Ollama and Docker.
 
-- About me.
 - Why local LLMs.
   > Local LLMs offer greater privacy, faster response times, offline access, 
   and full control over customization, making them ideal for secure, real-time, 
@@ -41,6 +40,7 @@
   - Run MCP with Ollama. (DevOps Pal)
   - Keep the MCP for docker commands only.
   - How to create a simple tool.
+  - Ollama with Openweb UI
   - References.
 
 ## References
